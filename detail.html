@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Destinasi - Wisata Lombok NTB</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .hero-section {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+      }
+
+      .destination-image {
+        height: 400px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .feature-card {
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .weather-card,
+      .calculator-card {
+        border-left: 4px solid #10b981;
+      }
+
+      #weatherResult,
+      #calculationResult {
+        min-height: 50px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .info-icon {
+        background-color: #10b981;
+        color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .gallery-thumb {
+        height: 80px;
+        width: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-thumb:hover {
+        transform: scale(1.05);
+      }
+
+      .destination-content {
+        display: none;
+      }
+
+      .destination-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-green-700">Wisata Lombok NTB</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-600 hover:text-green-500"
+            >Beranda</a
+          >
+          <a href="destinasi.html" class="text-gray-600 hover:text-green-500"
+            >Destinasi</a
+          >
+          <a href="galeri.html" class="text-gray-600 hover:text-green-500"
+            >Galeri</a
+          >
+          <a href="kontak.html" class="text-gray-600 hover:text-green-500"
+            >Kontak & Ulasan</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-600 hover:text-green-500">
+            <i class="bi bi-list text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white py-2 px-4 shadow-lg"
+      >
+        <a
+          href="index.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Beranda</a
+        >
+        <a
+          href="destinasi.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Destinasi</a
+        >
+        <a
+          href="galeri.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Galeri</a
+        >
+        <a
+          href="kontak.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Kontak & Ulasan</a
+        >
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-white">
+      <div class="text-center px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Detail Destinasi</h2>
+        <p class="text-xl">
+          Informasi Lengkap dan Fitur Perencanaan Perjalanan
+        </p>
+      </div>
+    </section>
+
+    <!-- Detail Destinasi Section -->
+    <section class="py-12 bg-white">
+      <div class="container">
+        <div class="row">
+          <!-- Informasi Utama Destinasi -->
+          <div class="col-12 col-lg-8">
+            <div class="mb-4">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="index.html" class="text-green-600">Beranda</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="destinasi.html" class="text-green-600"
+                      >Destinasi</a
+                    >
+                  </li>
+                  <li
+                    class="breadcrumb-item active"
+                    aria-current="page"
+                    id="breadcrumb-destination"
+                  >
+                    Destinasi
+                  </li>
+                </ol>
+              </nav>
+            </div>
+
+            <!-- Gunung Rinjani -->
+            <div id="rinjani-content" class="destination-content active">
+              <h1 class="text-3xl font-bold text-green-700 mb-3">
+                Gunung Rinjani
+              </h1>
+
+              <div class="mb-4">
+                <span class="badge bg-success me-2">Wisata Alam</span>
+                <span class="badge bg-warning text-dark">Trekking</span>
+                <span class="badge bg-info">Spot Foto</span>
+              </div>
+
+              <div class="mb-5">
+                <img
+                  src="img/rinjani.jpg"
+                  alt="Gunung Rinjani"
+                  class="destination-image rounded shadow"
+                />
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Lokasi</h5>
+                      <p class="mb-0">Lombok Utara, Nusa Tenggara Barat</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Waktu Terbaik</h5>
+                      <p class="mb-0">April - Oktober</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i
+                      class="bi bi-currency-dollar text-green-600 me-2 fs-5"
+                    ></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Tiket Masuk</h5>
+                      <p class="mb-0">Rp 15.000 - Rp 25.000</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-star-fill text-warning me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Rating</h5>
+                      <p class="mb-0">4.8/5 (1.200 ulasan)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Deskripsi</h3>
+                <p class="text-gray-700 mb-3">
+                  Gunung Rinjani adalah gunung berapi aktif yang terletak di
+                  Pulau Lombok, Nusa Tenggara Barat. Dengan ketinggian 3.726
+                  meter di atas permukaan laut, gunung ini merupakan gunung
+                  berapi tertinggi kedua di Indonesia. Gunung Rinjani merupakan
+                  bagian dari Taman Nasional Gunung Rinjani yang memiliki luas
+                  sekitar 41.330 hektar.
+                </p>
+                <p class="text-gray-700 mb-3">
+                  Puncak tertinggi gunung ini bernama Puncak Anjani. Di dalam
+                  kawah gunung ini terdapat danau kawah yang indah bernama
+                  Segara Anak (Laut Anak) dengan ketinggian 2.000 meter di atas
+                  permukaan laut. Danau ini memiliki luas sekitar 11.000.000
+                  meter persegi dengan kedalaman 230 meter.
+                </p>
+                <p class="text-gray-700">
+                  Gunung Rinjani sangat populer di kalangan pendaki domestik
+                  maupun mancanegara. Rute pendakian yang paling umum adalah
+                  melalui Sembalun dan Senaru. Pendakian biasanya memakan waktu
+                  2-4 hari tergantung rute dan kondisi fisik pendaki.
+                </p>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Fasilitas</h3>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Area Parkir Luas
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Toilet Umum
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Warung Makan
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Pemandu Wisata
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Tempat Ibadah
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Pusat Informasi
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Air Terjun Tiu Kelep -->
+            <div id="tiu-kelep-content" class="destination-content">
+              <h1 class="text-3xl font-bold text-green-700 mb-3">
+                Air Terjun Tiu Kelep
+              </h1>
+
+              <div class="mb-4">
+                <span class="badge bg-success me-2">Wisata Alam</span>
+                <span class="badge bg-primary">Air Terjun</span>
+                <span class="badge bg-info">Spot Foto</span>
+              </div>
+
+              <div class="mb-5">
+                <img
+                  src="img/air_terjun_tiu_kelep.png"
+                  alt="Air Terjun Tiu Kelep"
+                  class="destination-image rounded shadow"
+                />
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Lokasi</h5>
+                      <p class="mb-0">Desa Senaru, Lombok Utara</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Waktu Terbaik</h5>
+                      <p class="mb-0">Musim Kemarau (April-September)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i
+                      class="bi bi-currency-dollar text-green-600 me-2 fs-5"
+                    ></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Tiket Masuk</h5>
+                      <p class="mb-0">Rp 10.000 - Rp 15.000</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-star-fill text-warning me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Rating</h5>
+                      <p class="mb-0">4.7/5 (890 ulasan)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Deskripsi</h3>
+                <p class="text-gray-700 mb-3">
+                  Air Terjun Tiu Kelep adalah salah satu air terjun terindah di
+                  Lombok yang terletak di kawasan Taman Nasional Gunung Rinjani.
+                  Dengan ketinggian sekitar 45 meter, air terjun ini memiliki
+                  debit air yang deras sepanjang tahun. Nama "Tiu Kelep" dalam
+                  bahasa Sasak berarti "lubang yang meniup", merujuk pada angin
+                  kencang yang keluar dari celah-celah batu di sekitar air
+                  terjun.
+                </p>
+                <p class="text-gray-700 mb-3">
+                  Yang membuat Tiu Kelep spesial adalah adanya terowongan alami
+                  di balik curtain air terjun yang bisa dilalui pengunjung.
+                  Pengalaman berjalan di balik tirai air yang jatuh dari
+                  ketinggian memberikan sensasi yang tak terlupakan. Airnya yang
+                  jernih dan sejuk berasal dari mata air Gunung Rinjani.
+                </p>
+                <p class="text-gray-700">
+                  Perjalanan menuju Tiu Kelep melewati jalur trekking yang indah
+                  dengan pemandangan hutan tropis yang masih asri dan melewati
+                  Air Terjun Sendang Gile terlebih dahulu.
+                </p>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Fasilitas</h3>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Area Parkir
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Toilet Umum
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Warung Makan
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Pemandu Lokal
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Tempat Ganti Pakaian
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Area Istirahat
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gili Trawangan -->
+            <div id="gili-trawangan-content" class="destination-content">
+              <h1 class="text-3xl font-bold text-green-700 mb-3">
+                Gili Trawangan
+              </h1>
+
+              <div class="mb-4">
+                <span class="badge bg-success me-2">Wisata Bahari</span>
+                <span class="badge bg-info me-2">Snorkeling</span>
+                <span class="badge bg-warning text-dark">Sunset View</span>
+              </div>
+
+              <div class="mb-5">
+                <img
+                  src="img/gili_trawangan.png"
+                  alt="Gili Trawangan"
+                  class="destination-image rounded shadow"
+                />
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Lokasi</h5>
+                      <p class="mb-0">Kepulauan Gili, Lombok Utara</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Waktu Terbaik</h5>
+                      <p class="mb-0">April - November</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i
+                      class="bi bi-currency-dollar text-green-600 me-2 fs-5"
+                    ></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Tiket Speedboat</h5>
+                      <p class="mb-0">Rp 150.000 - Rp 300.000</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-star-fill text-warning me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Rating</h5>
+                      <p class="mb-0">4.9/5 (2.100 ulasan)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Deskripsi</h3>
+                <p class="text-gray-700 mb-3">
+                  Gili Trawangan adalah pulau terbesar dari tiga gili (kepulauan
+                  kecil) di lepas pantai barat laut Lombok. Pulau ini terkenal
+                  dengan pantai berpasir putih, air laut biru jernih, dan
+                  terumbu karang yang indah. Yang unik dari Gili Trawangan
+                  adalah tidak adanya kendaraan bermotor - transportasi utama
+                  adalah sepeda dan cidomo (kereta kuda).
+                </p>
+                <p class="text-gray-700 mb-3">
+                  Gili Trawangan menawarkan "sunset view" terbaik di antara
+                  ketiga gili dengan berbagai kafe dan bar tepi pantai. Pulau
+                  ini juga memiliki titik snorkeling dan diving yang
+                  spektakuler, termasuk patung kura-kura bawah air dan terumbu
+                  karang yang masih pristine.
+                </p>
+                <p class="text-gray-700">
+                  Malam hari di Gili Trawangan sangat hidup dengan berbagai
+                  restoran, bar, dan pasar malam. Untuk penyelam, terdapat lebih
+                  dari 20 titik diving dengan beragam biota laut termasuk penyu,
+                  hiu karang, dan ikan-ikan tropis.
+                </p>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Fasilitas</h3>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Resort & Homestay
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Restoran & Kafe
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Dive Center
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Sewa Sepeda
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        ATM & Money Changer
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Klinik Kesehatan
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pantai Tanjung Aan -->
+            <div id="tanjung-aan-content" class="destination-content">
+              <h1 class="text-3xl font-bold text-green-700 mb-3">
+                Pantai Tanjung Aan
+              </h1>
+
+              <div class="mb-4">
+                <span class="badge bg-success me-2">Wisata Pantai</span>
+                <span class="badge bg-info me-2">Pasir Merica</span>
+                <span class="badge bg-warning text-dark"
+                  >Spot Instagramable</span
+                >
+              </div>
+
+              <div class="mb-5">
+                <img
+                  src="img/pantai_tanjung_an.png"
+                  alt="Pantai Tanjung Aan"
+                  class="destination-image rounded shadow"
+                />
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Lokasi</h5>
+                      <p class="mb-0">Kawasan Mandalika, Lombok Tengah</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock-fill text-green-600 me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Waktu Terbaik</h5>
+                      <p class="mb-0">Sepanjang Tahun</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i
+                      class="bi bi-currency-dollar text-green-600 me-2 fs-5"
+                    ></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Tiket Masuk</h5>
+                      <p class="mb-0">Rp 5.000 - Rp 10.000</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-star-fill text-warning me-2 fs-5"></i>
+                    <div>
+                      <h5 class="mb-0 fw-bold">Rating</h5>
+                      <p class="mb-0">4.6/5 (1.500 ulasan)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Deskripsi</h3>
+                <p class="text-gray-700 mb-3">
+                  Pantai Tanjung Aan adalah salah satu pantai terindah di Lombok
+                  yang terletak di kawasan Mandalika. Pantai ini terkenal dengan
+                  pasirnya yang unik berbentuk butiran merica (pepper-like sand)
+                  dan air laut yang berwarna biru toska. Garis pantainya yang
+                  landai dan panjang membuatnya ideal untuk berjalan-jalan dan
+                  berenang.
+                </p>
+                <p class="text-gray-700 mb-3">
+                  Yang membedakan Tanjung Aan dari pantai lainnya adalah tekstur
+                  pasirnya yang terdiri dari butiran-butiran kecil seperti
+                  merica. Pantai ini memiliki dua teluk yang membentuk seperti
+                  huruf "W" dengan pemandangan bukit hijau di sekitarnya.
+                  Ombaknya yang tenang cocok untuk berenang dan aktivitas air
+                  lainnya.
+                </p>
+                <p class="text-gray-700">
+                  Pantai ini juga sering menjadi venue untuk event internasional
+                  seperti MotoGP dan World Superbike di Sirkuit Mandalika yang
+                  berdekatan. Sunset di Pantai Tanjung Aan sangat menakjubkan
+                  dengan pemandangan matahari terbenam di balik perbukitan.
+                </p>
+              </div>
+              <div class="mb-5">
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">Fasilitas</h3>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Area Parkir Luas
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Toilet & Bilas
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Warung Makan
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Gazebo & Tempat Duduk
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Sewa Alat Snorkeling
+                      </li>
+                      <li class="list-group-item d-flex align-items-center">
+                        <i
+                          class="bi bi-check-circle-fill text-success me-2"
+                        ></i>
+                        Area Bermain Anak
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar dengan Fitur Interaktif -->
+          <div class="col-12 col-lg-4">
+            <!-- Widget Cuaca -->
+            <div class="card shadow-sm mb-4 weather-card">
+              <div class="card-header bg-green-600 text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-cloud-sun me-2"></i> Info Cuaca
+                </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Dapatkan informasi cuaca terkini untuk perencanaan perjalanan
+                  Anda.
+                </p>
+                <div class="d-grid gap-2">
+                  <button id="weatherButton" class="btn btn-outline-success">
+                    <i class="bi bi-cloud-download me-2"></i> Cek Cuaca
+                  </button>
+                </div>
+                <div
+                  id="weatherResult"
+                  class="mt-3 p-3 bg-light rounded text-center"
+                >
+                  <p class="mb-0 text-muted">
+                    Klik tombol untuk melihat info cuaca
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kalkulator Biaya -->
+            <div class="card shadow-sm mb-4 calculator-card">
+              <div class="card-header bg-green-600 text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-calculator me-2"></i> Estimasi Biaya
+                  Perjalanan
+                </h5>
+              </div>
+              <div class="card-body">
+                <form id="costCalculator">
+                  <div class="mb-3">
+                    <label for="distance" class="form-label"
+                      >Jarak Tempuh (km)</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="distance"
+                      min="1"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="transportation" class="form-label"
+                      >Jenis Transportasi</label
+                    >
+                    <select class="form-select" id="transportation" required>
+                      <option value="" selected disabled>
+                        Pilih transportasi
+                      </option>
+                      <option value="3000">Motor (Rp 3.000/km)</option>
+                      <option value="5000">Mobil Pribadi (Rp 5.000/km)</option>
+                      <option value="10000">Taksi (Rp 10.000/km)</option>
+                      <option value="7500">Travel (Rp 7.500/km)</option>
+                      <option value="1500">Angkutan Umum (Rp 1.500/km)</option>
+                    </select>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">
+                      <i class="bi bi-calculator-fill me-2"></i> Hitung Biaya
+                    </button>
+                  </div>
+                </form>
+                <div id="calculationResult" class="mt-3 p-3 bg-light rounded">
+                  <p class="mb-0 text-muted text-center">
+                    Hasil perhitungan akan muncul di sini
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Informasi Kontak -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-green-600 text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-telephone me-2"></i> Informasi Kontak
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="info-item">
+                  <div class="info-icon">
+                    <i class="bi bi-telephone-fill"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1">Pusat Informasi</h6>
+                    <p class="mb-0 text-muted">087-863-683-025</p>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">
+                    <i class="bi bi-whatsapp"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1">WhatsApp</h6>
+                    <p class="mb-0 text-muted">+6287-863-683-025</p>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">
+                    <i class="bi bi-clock-fill"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold mb-1">Jam Operasional</h6>
+                    <p class="mb-0 text-muted">
+                      Setiap Hari<br />06:00 - 18:00 WITA
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Destinasi Terkait -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-green-600 text-white">
+                <h5 class="card-title mb-0">
+                  <i class="bi bi-geo-alt me-2"></i> Destinasi Terkait
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="list-group list-group-flush">
+                  <a
+                    href="?destinasi=tiu-kelep"
+                    class="list-group-item list-group-item-action d-flex align-items-center"
+                  >
+                    <img
+                      src="img/air_terjun_tiu_kelep.png"
+                      alt="Air Terjun Tiu Kelep"
+                      class="rounded me-3"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="mb-0">Air Terjun Tiu Kelep</h6>
+                      <small class="text-muted">Lombok Utara</small>
+                    </div>
+                  </a>
+                  <a
+                    href="?destinasi=gili-trawangan"
+                    class="list-group-item list-group-item-action d-flex align-items-center"
+                  >
+                    <img
+                      src="img/gili_trawangan.png"
+                      alt="Gili Trawangan"
+                      class="rounded me-3"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="mb-0">Gili Trawangan</h6>
+                      <small class="text-muted">Lombok Utara</small>
+                    </div>
+                  </a>
+                  <a
+                    href="?destinasi=tanjung-aan"
+                    class="list-group-item list-group-item-action d-flex align-items-center"
+                  >
+                    <img
+                      src="img/pantai_tanjung_an.png"
+                      alt="Pantai Tanjung Aan"
+                      class="rounded me-3"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <h6 class="mb-0">Pantai Tanjung Aan</h6>
+                      <small class="text-muted">Lombok Tengah</small>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <p>&copy; 2025 Wisata Daerah Lombok NTB. Semua hak dilindungi.</p>
+          </div>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Fungsi untuk mendapatkan parameter URL
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      // Fungsi untuk menampilkan destinasi berdasarkan parameter URL
+      function showDestination() {
+        const destinasi = getUrlParameter("destinasi");
+        const breadcrumb = document.getElementById("breadcrumb-destination");
+
+        // Sembunyikan semua konten destinasi
+        document.querySelectorAll(".destination-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+
+        // Tampilkan destinasi yang sesuai
+        let activeContent;
+        switch (destinasi) {
+          case "tiu-kelep":
+            activeContent = document.getElementById("tiu-kelep-content");
+            breadcrumb.textContent = "Air Terjun Tiu Kelep";
+            document.title = "Air Terjun Tiu Kelep - Wisata Lombok NTB";
+            break;
+          case "gili-trawangan":
+            activeContent = document.getElementById("gili-trawangan-content");
+            breadcrumb.textContent = "Gili Trawangan";
+            document.title = "Gili Trawangan - Wisata Lombok NTB";
+            break;
+          case "tanjung-aan":
+            activeContent = document.getElementById("tanjung-aan-content");
+            breadcrumb.textContent = "Pantai Tanjung Aan";
+            document.title = "Pantai Tanjung Aan - Wisata Lombok NTB";
+            break;
+          default:
+            activeContent = document.getElementById("rinjani-content");
+            breadcrumb.textContent = "Gunung Rinjani";
+            document.title = "Gunung Rinjani - Wisata Lombok NTB";
+            break;
+        }
+
+        if (activeContent) {
+          activeContent.classList.add("active");
+        }
+      }
+
+      // Mobile Menu Toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
+        });
+
+      // Fitur 1: Info Cuaca Acak
+      document
+        .getElementById("weatherButton")
+        .addEventListener("click", function () {
+          const weatherResult = document.getElementById("weatherResult");
+          const weatherConditions = [
+            {
+              condition: "Cerah",
+              icon: "bi-sun",
+              temp: "28-32°C",
+              desc: "Cuaca cerah, cocok untuk beraktivitas di luar",
+            },
+            {
+              condition: "Berawan",
+              icon: "bi-cloud",
+              temp: "26-30°C",
+              desc: "Berawan, kemungkinan hujan kecil",
+            },
+            {
+              condition: "Hujan Ringan",
+              icon: "bi-cloud-drizzle",
+              temp: "24-28°C",
+              desc: "Hujan ringan, disarankan membawa payung",
+            },
+            {
+              condition: "Hujan Lebat",
+              icon: "bi-cloud-rain-heavy",
+              temp: "23-26°C",
+              desc: "Hujan lebat, hindari aktivitas di luar",
+            },
+            {
+              condition: "Mendung",
+              icon: "bi-clouds",
+              temp: "25-29°C",
+              desc: "Mendung, berpotensi hujan",
+            },
+            {
+              condition: "Cerah Berawan",
+              icon: "bi-cloud-sun",
+              temp: "27-31°C",
+              desc: "Cerah berawan, cuaca cukup nyaman",
+            },
+          ];
+
+          // Pilih kondisi cuaca acak
+          const randomWeather =
+            weatherConditions[
+              Math.floor(Math.random() * weatherConditions.length)
+            ];
+
+          // Tampilkan hasil
+          weatherResult.innerHTML = `
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <i class="bi ${randomWeather.icon} text-warning fs-1 me-3"></i>
+                    <div>
+                        <h4 class="mb-0">${randomWeather.condition}</h4>
+                        <p class="mb-0 text-muted">Suhu: ${randomWeather.temp}</p>
+                    </div>
+                </div>
+                <p class="mb-0">${randomWeather.desc}</p>
+            `;
+        });
+
+      // Fitur 2: Kalkulator Estimasi Biaya Perjalanan
+      document
+        .getElementById("costCalculator")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const distanceInput = document.getElementById("distance");
+          const transportationSelect =
+            document.getElementById("transportation");
+          const resultDiv = document.getElementById("calculationResult");
+
+          // Ambil nilai input
+          const distance = parseFloat(distanceInput.value);
+          const costPerKm = parseFloat(transportationSelect.value);
+
+          // Validasi input
+          if (isNaN(distance) || distance <= 0) {
+            resultDiv.innerHTML =
+              '<p class="text-danger mb-0">Masukkan jarak yang valid</p>';
+            return;
+          }
+
+          if (isNaN(costPerKm)) {
+            resultDiv.innerHTML =
+              '<p class="text-danger mb-0">Pilih jenis transportasi</p>';
+            return;
+          }
+
+          // Hitung biaya
+          const totalCost = distance * costPerKm;
+
+          // Format angka ke Rupiah
+          const formatRupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+              style: "currency",
+              currency: "IDR",
+              minimumFractionDigits: 0,
+            }).format(number);
+          };
+
+          // Tampilkan hasil
+          resultDiv.innerHTML = `
+                <h5 class="text-success mb-2">Estimasi Biaya Perjalanan</h5>
+                <p class="mb-1">Jarak: ${distance} km</p>
+                <p class="mb-1">Transportasi: ${
+                  transportationSelect.options[
+                    transportationSelect.selectedIndex
+                  ].text
+                }</p>
+                <hr>
+                <h6 class="mb-0">Total Biaya: <span class="text-success">${formatRupiah(
+                  totalCost
+                )}</span></h6>
+                <small class="text-muted">*Perhitungan hanya untuk biaya transportasi</small>
+            `;
+        });
+
+      // Panggil fungsi untuk menampilkan destinasi saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", showDestination);
+    </script>
+  </body>
+</html>

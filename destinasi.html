@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Destinasi - Wisata Lombok NTB</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .hero-section {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+      }
+
+      .destination-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+      }
+
+      .destination-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-green-700">Wisata Lombok NTB</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-600 hover:text-green-500"
+            >Beranda</a
+          >
+          <a href="destinasi.html" class="text-green-700 font-semibold"
+            >Destinasi</a
+          >
+          <a href="galeri.html" class="text-gray-600 hover:text-green-500"
+            >Galeri</a
+          >
+          <a href="kontak.html" class="text-gray-600 hover:text-green-500"
+            >Kontak & Ulasan</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-600 hover:text-green-500">
+            <i class="bi bi-list text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white py-2 px-4 shadow-lg"
+      >
+        <a
+          href="index.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Beranda</a
+        >
+        <a href="destinasi.html" class="block py-2 text-green-700 font-semibold"
+          >Destinasi</a
+        >
+        <a
+          href="galeri.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Galeri</a
+        >
+        <a
+          href="kontak.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Kontak & Ulasan</a
+        >
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-white">
+      <div class="text-center px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          Destinasi Wisata Lombok
+        </h2>
+        <p class="text-xl">
+          Temukan Keindahan Alam dan Budaya Pulau Seribu Masjid
+        </p>
+      </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="py-12 bg-white">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">
+              Destinasi Populer
+            </h2>
+            <p class="text-center text-gray-600 mb-4">
+              Jelajahi berbagai destinasi menarik di Lombok, Nusa Tenggara Barat
+            </p>
+
+            <!-- Filter Kategori -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
+              <button class="btn btn-outline-success active" data-filter="all">
+                Semua
+              </button>
+              <button class="btn btn-outline-success" data-filter="alam">
+                Alam
+              </button>
+              <button class="btn btn-outline-success" data-filter="budaya">
+                Budaya
+              </button>
+              <button class="btn btn-outline-success" data-filter="kuliner">
+                Kuliner
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4" id="destinations-container">
+          <!-- Destinasi 1: Pantai Pink -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="alam">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/pantai_pink.jpg"
+                  class="card-img-top"
+                  alt="Pantai Pink Lombok"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-success">Alam</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Pantai Pink</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Pantai dengan pasir berwarna pink yang langka, terletak di
+                  Pulau Lombok bagian selatan. Warna pink berasal dari fragmen
+                  koral merah yang bercampur dengan pasir putih.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Tengah</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=1" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 2: Gunung Rinjani -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="alam">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/rinjani.jpg"
+                  class="card-img-top"
+                  alt="Gunung Rinjani"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-success">Alam</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Gunung Rinjani</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Gunung berapi tertinggi kedua di Indonesia dengan ketinggian
+                  3.726 mdpl. Menawarkan pemandangan spektakuler dan danau kawah
+                  Segara Anak yang memukau.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Utara</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=2" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 3: Desa Sade -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="budaya">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/sade.jpg"
+                  class="card-img-top"
+                  alt="Desa Sade"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-warning text-dark"
+                  >Budaya</span
+                >
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Desa Sade</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Desa tradisional suku Sasak yang masih mempertahankan adat
+                  istiadat dan arsitektur rumah tradisional. Tempat terbaik
+                  untuk mengenal budaya asli Lombok.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Tengah</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=3" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 4: Gili Trawangan -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="alam">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/gili_trawangan.png"
+                  class="card-img-top"
+                  alt="Gili Trawangan"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-success">Alam</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Gili Trawangan</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Pulau kecil dengan pantai berpasir putih dan air laut biru
+                  jernih. Surga bagi penyelam dan traveler yang mencari
+                  ketenangan tanpa kendaraan bermotor.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Utara</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=4" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 5: Air Terjun Tiu Kelep -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="alam">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/air_terjun_tiu_kelep.png"
+                  class="card-img-top"
+                  alt="Air Terjun Tiu Kelep"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-success">Alam</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Air Terjun Tiu Kelep</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Air terjun yang terletak di kawasan Gunung Rinjani dengan
+                  ketinggian sekitar 45 meter. Airnya yang jernih dan sejuk
+                  menjadi daya tarik utama wisatawan.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Utara</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=5" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 6: Pasar Tradisional Mandalika -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="kuliner">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/pasar_mandalika.png"
+                  class="card-img-top"
+                  alt="Pasar Tradisional Mandalika"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-danger">Kuliner</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">
+                  Pasar Tradisional Mandalika
+                </h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Pasar tradisional yang menawarkan berbagai kuliner khas
+                  Lombok. Tempat terbaik untuk mencicipi ayam taliwang, plecing
+                  kangkung, dan bebalung.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Tengah</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-half"></i>
+                      <i class="bi bi-star"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=6" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 7: Taman Narmada -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="budaya">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/taman_narmada.png"
+                  class="card-img-top"
+                  alt="Taman Narmada"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-warning text-dark"
+                  >Budaya</span
+                >
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Taman Narmada</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Taman peninggalan Kerajaan Karangasem yang dibangun pada tahun
+                  1727. Memiliki kolam renang alami dan digunakan untuk upacara
+                  Pekelem.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Barat</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star"></i>
+                      <i class="bi bi-star"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=7" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destinasi 8: Pantai Tanjung Aan -->
+          <div class="col-12 col-md-6 col-lg-4" data-category="alam">
+            <div class="card destination-card h-100 border-0 shadow-sm">
+              <div class="position-relative">
+                <img
+                  src="img/pantai_tanjung_an.png"
+                  class="card-img-top"
+                  alt="Pantai Tanjung Aan"
+                  style="height: 200px; object-fit: cover"
+                />
+                <span class="category-badge badge bg-success">Alam</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-green-700">Pantai Tanjung Aan</h5>
+                <p class="card-text text-gray-600 flex-grow-1">
+                  Pantai dengan pasir berbentuk butiran merica yang unik.
+                  Memiliki ombak yang tenang dan pemandangan laut biru yang
+                  memukau.
+                </p>
+                <div class="mt-auto">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <small class="text-muted"
+                      ><i class="bi bi-geo-alt"></i> Lombok Tengah</small
+                    >
+                    <div class="text-warning">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star"></i>
+                    </div>
+                  </div>
+                  <a href="detail.html?id=8" class="btn btn-success w-100"
+                    >Lihat Detail</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row mt-5">
+          <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a
+                    class="page-link"
+                    href="#"
+                    tabindex="-1"
+                    aria-disabled="true"
+                    >Previous</a
+                  >
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <p>&copy; 2025 Wisata Daerah Lombok NTB.by fadli.</p>
+          </div>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Mobile Menu Toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
+        });
+
+      // Filter Destinasi berdasarkan Kategori
+      document.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", function () {
+          const filter = this.getAttribute("data-filter");
+
+          // Update active button
+          document.querySelectorAll("[data-filter]").forEach((btn) => {
+            btn.classList.remove("active");
+          });
+          this.classList.add("active");
+
+          // Filter destinations
+          document.querySelectorAll("[data-category]").forEach((card) => {
+            if (
+              filter === "all" ||
+              card.getAttribute("data-category") === filter
+            ) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

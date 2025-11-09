@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri Wisata - Wisata Lombok NTB</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .hero-section {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 40vh;
+      }
+
+      .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 250px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 20px 15px 15px;
+        transform: translateY(100%);
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+
+      .gallery-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .gallery-location {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      .hidden-gallery {
+        display: none;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .toggle-btn {
+        transition: all 0.3s ease;
+      }
+
+      .toggle-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .filter-btn {
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn.active {
+        background-color: #10b981;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-green-700">Wisata Lombok NTB</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-gray-600 hover:text-green-500"
+            >Beranda</a
+          >
+          <a href="destinasi.html" class="text-gray-600 hover:text-green-500"
+            >Destinasi</a
+          >
+          <a href="galeri.html" class="text-green-700 font-semibold">Galeri</a>
+          <a href="kontak.html" class="text-gray-600 hover:text-green-500"
+            >Kontak & Ulasan</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-600 hover:text-green-500">
+            <i class="bi bi-list text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white py-2 px-4 shadow-lg"
+      >
+        <a
+          href="index.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Beranda</a
+        >
+        <a
+          href="destinasi.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Destinasi</a
+        >
+        <a href="galeri.html" class="block py-2 text-green-700 font-semibold"
+          >Galeri</a
+        >
+        <a
+          href="kontak.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Kontak & Ulasan</a
+        >
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-white">
+      <div class="text-center px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          Galeri Wisata Lombok
+        </h2>
+        <p class="text-xl">
+          Jelajahi Keindahan Pulau Seribu Masjid Melalui Koleksi Foto
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">
+            Koleksi Foto Wisata
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto mb-6">
+            Temukan pesona Lombok NTB melalui koleksi foto-foto menakjubkan dari
+            berbagai destinasi wisata alam, budaya, dan kuliner.
+          </p>
+
+          <!-- Filter Kategori -->
+          <div class="flex flex-wrap justify-center gap-2 mb-6">
+            <button
+              class="filter-btn active px-4 py-2 rounded-full border border-green-600 text-green-600 hover:bg-green-50 transition-all"
+              data-filter="all"
+            >
+              Semua
+            </button>
+            <button
+              class="filter-btn px-4 py-2 rounded-full border border-green-600 text-green-600 hover:bg-green-50 transition-all"
+              data-filter="alam"
+            >
+              Alam
+            </button>
+            <button
+              class="filter-btn px-4 py-2 rounded-full border border-green-600 text-green-600 hover:bg-green-50 transition-all"
+              data-filter="budaya"
+            >
+              Budaya
+            </button>
+            <button
+              class="filter-btn px-4 py-2 rounded-full border border-green-600 text-green-600 hover:bg-green-50 transition-all"
+              data-filter="kuliner"
+            >
+              Kuliner
+            </button>
+          </div>
+
+          <!-- Toggle Button -->
+          <button
+            id="toggleGallery"
+            class="toggle-btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-md"
+          >
+            <i class="bi bi-eye-slash me-2"></i>Sembunyikan Foto
+          </button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div id="galleryGrid" class="gallery-container">
+          <!-- Foto 1 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/pantai_pink.jpg" alt="Pantai Pink" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Pantai Pink</div>
+              <div class="gallery-location">Lombok Tengah</div>
+            </div>
+          </div>
+
+          <!-- Foto 2 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/rinjani.jpg" alt="Gunung Rinjani" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Gunung Rinjani</div>
+              <div class="gallery-location">Lombok Utara</div>
+            </div>
+          </div>
+
+          <!-- Foto 3 -->
+          <div class="gallery-item fade-in" data-category="budaya">
+            <img src="img/sade.jpg" alt="Desa Sade" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Desa Sade</div>
+              <div class="gallery-location">Lombok Tengah</div>
+            </div>
+          </div>
+
+          <!-- Foto 4 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/gili_trawangan.png" alt="Gili Trawangan" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Gili Trawangan</div>
+              <div class="gallery-location">Lombok Utara</div>
+            </div>
+          </div>
+
+          <!-- Foto 5 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img
+              src="img/air_terjun_tiu_kelep.png"
+              alt="Air Terjun Tiu Kelep"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Air Terjun Tiu Kelep</div>
+              <div class="gallery-location">Lombok Utara</div>
+            </div>
+          </div>
+
+          <!-- Foto 6 -->
+          <div class="gallery-item fade-in" data-category="kuliner">
+            <img src="img/ayam_taliwang.png" alt="Ayam Taliwang" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Ayam Taliwang</div>
+              <div class="gallery-location">Kuliner Khas Lombok</div>
+            </div>
+          </div>
+
+          <!-- Foto 7 -->
+          <div class="gallery-item fade-in" data-category="budaya">
+            <img src="img/taman_narmada.png" alt="Taman Narmada" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Taman Narmada</div>
+              <div class="gallery-location">Lombok Barat</div>
+            </div>
+          </div>
+
+          <!-- Foto 8 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/pantai_tanjung_an.png" alt="Pantai Tanjung Aan" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Pantai Tanjung Aan</div>
+              <div class="gallery-location">Lombok Tengah</div>
+            </div>
+          </div>
+
+          <!-- Foto 9 -->
+          <div class="gallery-item fade-in" data-category="kuliner">
+            <img src="img/pelecing_kangkung.png" alt="Plecing Kangkung" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Plecing Kangkung</div>
+              <div class="gallery-location">Kuliner Khas Lombok</div>
+            </div>
+          </div>
+
+          <!-- Foto 10 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/gili_meno.png" alt="Gili Meno" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Gili Meno</div>
+              <div class="gallery-location">Lombok Utara</div>
+            </div>
+          </div>
+
+          <!-- Foto 11 -->
+          <div class="gallery-item fade-in" data-category="budaya">
+            <img src="img/tenun_lombok.png" alt="Tenun Lombok" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Tenun Tradisional</div>
+              <div class="gallery-location">Kerajinan Khas Lombok</div>
+            </div>
+          </div>
+
+          <!-- Foto 12 -->
+          <div class="gallery-item fade-in" data-category="kuliner">
+            <img src="img/sate_rembiga.png" alt="Sate Rembiga" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Sate Rembiga</div>
+              <div class="gallery-location">Kuliner Khas Lombok</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Photos (Initially Hidden) -->
+        <div id="additionalGallery" class="gallery-container hidden-gallery">
+          <!-- Foto 13 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/senggigi.jpg" alt="Pantai Senggigi" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Pantai Senggigi</div>
+              <div class="gallery-location">Lombok Barat</div>
+            </div>
+          </div>
+
+          <!-- Foto 14 -->
+          <div class="gallery-item fade-in" data-category="alam">
+            <img src="img/gili_air.png" alt="Gili Air" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Gili Air</div>
+              <div class="gallery-location">Lombok Utara</div>
+            </div>
+          </div>
+
+          <!-- Foto 15 -->
+          <div class="gallery-item fade-in" data-category="budaya">
+            <img src="img/peresean.png" alt="Peresean" />
+            <div class="gallery-overlay">
+              <div class="gallery-title">Peresean</div>
+              <div class="gallery-location">Seni Beladiri Sasak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <p>&copy; 2025 Wisata Daerah Lombok NTB. by fadli.</p>
+          </div>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Mobile Menu Toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
+        });
+
+      // Toggle Gallery Visibility
+      const toggleButton = document.getElementById("toggleGallery");
+      const galleryGrid = document.getElementById("galleryGrid");
+      const additionalGallery = document.getElementById("additionalGallery");
+      let isGalleryVisible = true;
+
+      toggleButton.addEventListener("click", function () {
+        if (isGalleryVisible) {
+          galleryGrid.classList.add("hidden-gallery");
+          additionalGallery.classList.add("hidden-gallery");
+          toggleButton.innerHTML =
+            '<i class="bi bi-eye me-2"></i>Tampilkan Foto';
+          isGalleryVisible = false;
+        } else {
+          galleryGrid.classList.remove("hidden-gallery");
+          additionalGallery.classList.remove("hidden-gallery");
+          toggleButton.innerHTML =
+            '<i class="bi bi-eye-slash me-2"></i>Sembunyikan Foto';
+          isGalleryVisible = true;
+        }
+      });
+
+      // Filter Gallery by Category
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+          // Add active class to clicked button
+          this.classList.add("active");
+
+          const filterValue = this.getAttribute("data-filter");
+
+          galleryItems.forEach((item) => {
+            if (
+              filterValue === "all" ||
+              item.getAttribute("data-category") === filterValue
+            ) {
+              item.style.display = "block";
+              // Add fade-in animation
+              item.classList.add("fade-in");
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Add click event to gallery items for potential lightbox functionality
+      galleryItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const title = this.querySelector(".gallery-title").textContent;
+          alert(`Anda mengklik: ${title}`);
+          // Di sini bisa ditambahkan fungsi lightbox/modal untuk menampilkan gambar dalam ukuran besar
+        });
+      });
+    </script>
+  </body>
+</html>

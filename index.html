@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wisata Daerah Lombok NTB</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      .hero-section {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 70vh;
+      }
+
+      .feature-card {
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold text-green-700">Wisata Lombok NTB</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a
+            href="index.html"
+            class="text-green-700 font-semibold hover:text-green-500"
+            >Beranda</a
+          >
+          <a href="destinasi.html" class="text-gray-600 hover:text-green-500"
+            >Destinasi</a
+          >
+          <a href="galeri.html" class="text-gray-600 hover:text-green-500"
+            >Galeri</a
+          >
+          <a href="kontak.html" class="text-gray-600 hover:text-green-500"
+            >Kontak & Ulasan</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-gray-600 hover:text-green-500">
+            <i class="bi bi-list text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white py-2 px-4 shadow-lg"
+      >
+        <a href="index.html" class="block py-2 text-green-700 font-semibold"
+          >Beranda</a
+        >
+        <a
+          href="destinasi.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Destinasi</a
+        >
+        <a
+          href="galeri.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Galeri</a
+        >
+        <a
+          href="kontak.html"
+          class="block py-2 text-gray-600 hover:text-green-500"
+          >Kontak & Ulasan</a
+        >
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-white">
+      <div class="text-center px-4">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          Selamat Datang di Lombok NTB
+        </h2>
+        <p class="text-xl mb-8">
+          Pulau Seribu Masjid dengan Keindahan Alam yang Memukau
+        </p>
+        <a
+          href="destinasi.html"
+          class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+        >
+          Jelajahi Destinasi
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+          Fitur Wisata Lombok NTB
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Alam Card -->
+          <div
+            class="feature-card bg-white rounded-lg shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-cover bg-center"
+              style="background-image: url('img/pantai_pink.jpg')"
+            ></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-green-700 mb-2">Wisata Alam</h3>
+              <p class="text-gray-600 mb-4">
+                Nikmati keindahan alam Lombok yang memukau, mulai dari pantai
+                berpasir putih, gunung berapi, hingga air terjun yang
+                menakjubkan.
+              </p>
+              <a
+                href="destinasi.html?kategori=alam"
+                class="text-green-600 font-semibold hover:text-green-800 flex items-center"
+              >
+                Jelajahi <i class="bi bi-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Budaya Card -->
+          <div
+            class="feature-card bg-white rounded-lg shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-cover bg-center"
+              style="background-image: url('img/peresean.png')"
+            ></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-green-700 mb-2">
+                Wisata Budaya
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Temukan kekayaan budaya Sasak yang unik, dari tradisi tenun
+                ikat, rumah adat, hingga upacara adat yang masih dilestarikan.
+              </p>
+              <a
+                href="destinasi.html?kategori=budaya"
+                class="text-green-600 font-semibold hover:text-green-800 flex items-center"
+              >
+                Jelajahi <i class="bi bi-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Kuliner Card -->
+          <div
+            class="feature-card bg-white rounded-lg shadow-lg overflow-hidden"
+          >
+            <div
+              class="h-48 bg-cover bg-center"
+              style="background-image: url('img/ayam_taliwang.png')"
+            ></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-green-700 mb-2">
+                Wisata Kuliner
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Rasakan kelezatan kuliner khas Lombok seperti ayam taliwang,
+                plecing kangkung, dan bebalung yang menggugah selera.
+              </p>
+              <a
+                href="destinasi.html?kategori=kuliner"
+                class="text-green-600 font-semibold hover:text-green-800 flex items-center"
+              >
+                Jelajahi <i class="bi bi-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <p>&copy; 2025 Wisata Daerah Lombok NTB. by fadli.</p>
+          </div>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-facebook text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-instagram text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-twitter text-xl"></i>
+            </a>
+            <a
+              href="#"
+              class="text-white hover:text-green-400 transition duration-300"
+            >
+              <i class="bi bi-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+  </body>
+</html>
